@@ -1,0 +1,24 @@
+{
+  "name": "hmpo-templates",
+  "version": "0.0.0",
+  "description": "Page layouts and partials for Node.js with ExpressJS frontend applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UKHomeOffice/passports-templates.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UKHomeOffice/passports-templates/issues"
+  },
+  "homepage": "https://github.com/UKHomeOffice/passports-templates#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "express-partial-templates": "^0.1.0",
+    "hmpo-govuk-template": "^0.1.0"
+  }
+}
