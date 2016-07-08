@@ -18,7 +18,7 @@
   "homepage": "https://github.com/UKHomeOffice/passports-templates#readme",
   "dependencies": {
     "express": "^4.13.4",
-    "express-partial-templates": "^0.1.0",
+    "express-partial-templates": "^0.2.0",
     "hmpo-govuk-template": "^0.1.0"
   }
 }
