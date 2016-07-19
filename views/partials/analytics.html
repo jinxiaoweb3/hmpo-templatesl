@@ -7,7 +7,7 @@
     ga('set', 'anonymizeIp', true);
     ga('create', '{{ga-id}}', 'auto');
     {{$ga-page-view}}
-    ga('send', 'pageview'{{#ga-page}}, '{{ga-page}}'{{/ga-page}});
+    ga('send', 'pageview'{{#ga-page}}, '{{ga-page}}{{ga-tokens}}'{{/ga-page}});
     {{/ga-page-view}}
     {{#ga-page}}
     {{#errorlist.length}}
