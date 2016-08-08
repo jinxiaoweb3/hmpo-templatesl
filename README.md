@@ -10,12 +10,14 @@ npm install [--save] hmpo-templates
 
 ## Setup
 
-Install [hogan-express-strict](https://github.com/lennym/hogan-express) as part of your project.
+Install [hogan-express-strict](https://github.com/lennym/hogan-express) and [express-partial-templates](https://github.com/UKHomeOffice/express-partial-templates) as part of your project.
 ```
 var app = require('express')();
 
+app.set('view engine', 'html');
 app.use(require('hmpo-templates'));
 app.engine('html', require('hogan-express-strict'));
+app.use(require('express-partial-templates')(app));
 ```
 
 ## Basic usage
@@ -43,7 +45,7 @@ my-page.html
 
 ## Templates
 
-The templates are added to `res.locals`.
+The templates are added to `res.locals` with `hmpo` as a prefix to the template names.
 
 Layout:
 + maincontent (sets maincontent-left as the default and provides a block to override)
@@ -67,7 +69,7 @@ Partials:
 
 ### Changing a page layout
 
-layout.html
+Create layout.html in your views directory.
 ```
 {{< hmpo-layout}}
     {{$pageTitle}}...page title...{{/pageTitle}}
@@ -80,6 +82,7 @@ layout.html
     {{/main-content}}
 {{/ hmpo-layout}}
 ```
+This changes the main page layout to maincontent-right. In your custom pages you can now inherit from layout.html.
 
 ## Compatibility
 
