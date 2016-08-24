@@ -61,11 +61,12 @@ Partials:
 + betatag
 + body-end
 + cookies
++ error-summary
 + form
 + head
 + new-window
 + sidebar
-+ validation-summary
++ warning
 
 ### Changing a page layout
 
