@@ -1,6 +1,6 @@
 # hmpo-templates
 
-Common page layouts and partials. Inherits from [hmpo-govuk-template](https://github.com/UKHomeOffice/govuk-template-compiler).
+Common page layouts and partials.
 
 ## Installation
 
@@ -10,9 +10,11 @@ npm install [--save] hmpo-templates
 
 ## Setup
 
-Install [hogan-express-strict](https://github.com/lennym/hogan-express) and [express-partial-templates](https://github.com/UKHomeOffice/express-partial-templates) as part of your project.
+Install [hmpo-govuk-template](https://github.com/UKHomeOffice/govuk-template-compiler), [hogan-express-strict](https://github.com/lennym/hogan-express) and [express-partial-templates](https://github.com/UKHomeOffice/express-partial-templates) as part of your project.
 ```
 var app = require('express')();
+
+require('hmpo-govuk-template').setup(app);
 
 app.set('view engine', 'html');
 app.use(require('hmpo-templates'));
