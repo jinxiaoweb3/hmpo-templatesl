@@ -15,6 +15,11 @@
         ga('send', 'event', '{{ga-page}}', '{{key}}', '{{type}}');
         {{/errorlist}}
     {{/errorlist.length}}
+    {{#gaevents.length}}
+        {{#gaevents}}
+        ga('send', 'event', '{{ga-page}}', '{{key}}', '{{type}}');
+        {{/gaevents}}
+    {{/gaevents.length}}
     {{/ga-page}}
 </script>
 {{/ga-id}}
