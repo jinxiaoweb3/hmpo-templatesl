@@ -12,12 +12,12 @@
     {{#ga-page}}
     {{#errorlist.length}}
         {{#errorlist}}
-        ga('send', 'event', '{{ga-page}}', '{{key}}', '{{type}}');
+        ga('send', 'event', '{{ga-page}}', '{{key}}', '{{type}}'{{#value}}, '{{value}}'{{/value}});
         {{/errorlist}}
     {{/errorlist.length}}
     {{#gaevents.length}}
         {{#gaevents}}
-        ga('send', 'event', '{{ga-page}}', '{{key}}', '{{type}}');
+        ga('send', 'event', '{{ga-page}}', '{{key}}', '{{type}}'{{#vvalue}}, '{{value}}'{{/value}});
         {{/gaevents}}
     {{/gaevents.length}}
     {{/ga-page}}
