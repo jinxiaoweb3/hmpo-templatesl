@@ -4,7 +4,7 @@
   "description": "Page layouts and partials for Node.js with ExpressJS frontend applications",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./test --recursive"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,11 @@
   "dependencies": {
     "express": "^4.13.4",
     "express-partial-templates": "^0.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "cheerio": "^1.0.0-rc.2",
+    "hogan.js": "^3.0.2",
+    "mocha": "^4.0.1"
   }
 }
