@@ -1,6 +1,6 @@
 {
   "name": "hmpo-templates",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Page layouts and partials for Node.js with ExpressJS frontend applications",
   "main": "index.js",
   "scripts": {
