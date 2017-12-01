@@ -14,9 +14,13 @@
         {{#errorlist}}
             ga('send', {
                 hitType: 'event'
-                , eventCategory: "{{ga-page}}"
-                , eventAction: "{{key}}"
-                , eventLabel: "{{type}}"
+                {{#category}}, eventCategory: "{{category}}"{{/category}}
+                {{^category}}, eventCategory: 'form validation'{{/category}}
+                {{#action}}, eventAction: "{{action}}"{{/action}}
+                {{^action}}, eventAction: 'failed'{{/action}}
+                {{#label}}, eventLabel: "{{label}}"{{/label}}
+                {{^label}}, eventLabel: "{{key}}: {{type}}"{{/label}}
+                {{#value}}, eventValue: "{{value}}"{{/value}}                
             });
         {{/errorlist}}
     {{/errorlist.length}}
