@@ -48,7 +48,7 @@ describe('Analytics partial', () =>  {
 			'ga-id': 'abc',
 			'ga-page': '/path',
 			errorlist: [
-				{ key: 'KEY1', type: 'TYPE1', category: 'CAT1', action: 'ACTION1', label: 'LABEL1', value: 12 }
+				{ key: 'KEY1', type: 'TYPE1', gaCategory: 'CAT1', gaAction: 'ACTION1', gaLabel: 'LABEL1', gaValue: 12 }
 			]
 		});
 
@@ -63,8 +63,8 @@ describe('Analytics partial', () =>  {
 			'ga-id': 'abc',
 			'ga-page': '/path',
 			gaevents: [
-				{ category: 'CAT1', action: 'ACTION1' },
-				{ category: 'CAT2', action: 'ACTION2', label: 'LABEL2', value: 23 }
+				{ gaCategory: 'CAT1', gaAction: 'ACTION1' },
+				{ gaCategory: 'CAT2', gaAction: 'ACTION2', gaLabel: 'LABEL2', gaValue: 23 }
 			]
 		});
 

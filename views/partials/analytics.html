@@ -14,13 +14,13 @@
         {{#errorlist}}
             ga('send', {
                 hitType: 'event'
-                {{#category}}, eventCategory: "{{category}}"{{/category}}
-                {{^category}}, eventCategory: 'form validation'{{/category}}
-                {{#action}}, eventAction: "{{action}}"{{/action}}
-                {{^action}}, eventAction: 'failed'{{/action}}
-                {{#label}}, eventLabel: "{{label}}"{{/label}}
-                {{^label}}, eventLabel: "{{key}}: {{type}}"{{/label}}
-                {{#value}}, eventValue: "{{value}}"{{/value}}                
+                {{#gaCategory}}, eventCategory: "{{gaCategory}}"{{/gaCategory}}
+                {{^gaCategory}}, eventCategory: 'form validation'{{/gaCategory}}
+                {{#gaAction}}, eventAction: "{{gaAction}}"{{/gaAction}}
+                {{^gaAction}}, eventAction: 'failed'{{/gaAction}}
+                {{#gaLabel}}, eventLabel: "{{gaLabel}}"{{/gaLabel}}
+                {{^gaLabel}}, eventLabel: "{{key}}: {{type}}"{{/gaLabel}}
+                {{#gaValue}}, eventValue: "{{gaValue}}"{{/gaValue}}                
             });
         {{/errorlist}}
     {{/errorlist.length}}
@@ -28,10 +28,10 @@
         {{#gaevents}}
             ga('send', {
                 hitType: 'event'
-                , eventCategory: "{{category}}"
-                , eventAction: "{{action}}"
-                {{#label}}, eventLabel: "{{label}}"{{/label}}
-                {{#value}}, eventValue: "{{value}}"{{/value}}
+                , eventCategory: "{{gaCategory}}"
+                , eventAction: "{{gaAction}}"
+                {{#gaLabel}}, eventLabel: "{{gaLabel}}"{{/gaLabel}}
+                {{#gaValue}}, eventValue: "{{gaValue}}"{{/gaValue}}
             });
         {{/gaevents}}
     {{/gaevents.length}}
