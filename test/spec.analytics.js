@@ -37,11 +37,25 @@ describe('Analytics partial', () =>  {
 			]
 		});
 
-		html.should.match(/eventCategory: "\/path"/);
-		html.should.match(/eventAction: "KEY1"/);
-		html.should.match(/eventLabel: "TYPE1"/);
-		html.should.match(/eventAction: "KEY2"/);
-		html.should.match(/eventLabel: "TYPE2"/);
+		html.should.match(/eventCategory: 'form validation'/);
+		html.should.match(/eventAction: 'failed'/);
+		html.should.match(/eventLabel: "KEY1: TYPE1"/);
+		html.should.match(/eventLabel: "KEY2: TYPE2"/);
+	});
+
+	it('should fire custom ga events for each error', () => {
+		let html = compiled.render({
+			'ga-id': 'abc',
+			'ga-page': '/path',
+			errorlist: [
+				{ key: 'KEY1', type: 'TYPE1', category: 'CAT1', action: 'ACTION1', label: 'LABEL1', value: 12 }
+			]
+		});
+
+		html.should.match(/eventCategory: "CAT1"/);
+		html.should.match(/eventAction: "ACTION1"/);
+		html.should.match(/eventLabel: "LABEL1"/);
+		html.should.match(/eventValue: "12"/);
 	});
 
 	it('should fire ga events for each event', () => {
