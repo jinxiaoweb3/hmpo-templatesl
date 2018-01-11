@@ -1,0 +1,39 @@
+{{#gtm.id}}
+<script>
+    window.dataLayer = window.dataLayer || [];
+    window.gtm = function (e) { window.dataLayer.push(e); };
+
+    {{#sessionid}}
+        gtm({'Session ID': "{{sessionid}}"});
+    {{/sessionid}}
+    {{#errorlist.length}}
+        {{#errorlist}}
+            gtm({
+                event: 'Validation Error',
+                field: "{{key}}",
+                error: "{{type}}"
+            });
+        {{/errorlist}}
+    {{/errorlist.length}}
+    {{#gaevents.length}}
+        {{#gaevents}}
+            gtm({
+                event: {{#gaEvent}}"{{gaEvent}}"{{/gaEvent}}{{^gaEvent}}'Custom Event'{{/gaEvent}},
+                category: "{{gaCategory}}",
+                action: "{{gaAction}}",
+                label: "{{gaLabel}}",
+                value: "{{gaValue}}"
+            });
+        {{/gaevents}}
+    {{/gaevents.length}}
+
+    {{$analytics}}{{/analytics}}
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl{{#gtm.preview}}+ '&gtm_auth={{gtm.auth}}&gtm_preview={{gtm.preview}}&gtm_cookies_win=x'{{/gtm.preview}};f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','{{gtm.id}}');</script>
+<!-- End Google Tag Manager -->
+{{/gtm.id}}

@@ -28,6 +28,12 @@ describe('Analytics partial', () =>  {
         html.should.not.match(/\/\/www.google-analytics.com\/analytics.js/);
     });
 
+    it('should not render if a gtm config is supplied', () => {
+        locals.gtm = { id: 'present' };
+        let html = partials.render('hmpo-partials-analytics', locals);
+        html.should.not.match(/\/\/www.google-analytics.com\/analytics.js/);
+    });
+
     it('should fire ga events for each error', () => {
         locals.errorlist = [
             { key: 'KEY1', type: 'TYPE1' },
