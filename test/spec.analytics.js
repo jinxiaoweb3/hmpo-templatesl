@@ -1,79 +1,53 @@
 'use strict';
 
 require('chai').should();
-const Hogan = require('hogan.js');
-const cheerio = require('cheerio');
-const path = require('path');
-const fs = require('fs');
-
-const filename = path.resolve(__dirname, '..', 'views', 'partials', 'analytics.html');
+const partials = require('./load-partials');
 
 describe('Analytics partial', () =>  {
-	let compiled;
+    let locals;
 
-	beforeEach(() => {
-		let template = fs.readFileSync(filename, 'utf8');
-		compiled = Hogan.compile(template);
-	});
+    beforeEach(() => {
+        locals = {
+            'ga-id': 'abc'
+        };
+    });
 
-	it('should render', () => {
-		let html = compiled.render({});
-		html.should.equal('');
-	});
+    it('should render from the head partial', () => {
+        let html = partials.render('hmpo-partials-head', locals);
+        html.should.match(/\/\/www.google-analytics.com\/analytics.js/);
+    });
 
-	it('should render a script tag if a ga-id is given', () => {
-		let html = compiled.render({ 'ga-id': 'abc' });
-		let $ = cheerio.load(html);
-		$('script').length.should.equal(1);
-	});
+    it('should load snippet if ga id is supplied', () => {
+        let html = partials.render('hmpo-partials-analytics', locals);
+        html.should.match(/\/\/www.google-analytics.com\/analytics.js/);
+    });
 
-	it('should fire ga events for each error', () => {
-		let html = compiled.render({
-			'ga-id': 'abc',
-			'ga-page': '/path',
-			errorlist: [
-				{ key: 'KEY1', type: 'TYPE1' },
-				{ key: 'KEY2', type: 'TYPE2' }
-			]
-		});
+    it('should not render if no ga-id is supplied', () => {
+        delete locals['ga-id'];
+        let html = partials.render('hmpo-partials-analytics', locals);
+        html.should.not.match(/\/\/www.google-analytics.com\/analytics.js/);
+    });
 
-		html.should.match(/eventCategory: 'form validation'/);
-		html.should.match(/eventAction: 'failed'/);
-		html.should.match(/eventLabel: "KEY1: TYPE1"/);
-		html.should.match(/eventLabel: "KEY2: TYPE2"/);
-	});
+    it('should fire ga events for each error', () => {
+        locals.errorlist = [
+            { key: 'KEY1', type: 'TYPE1' },
+            { key: 'KEY2', type: 'TYPE2' }
+        ];
+        let html = partials.render('hmpo-partials-analytics', locals);
 
-	it('should fire custom ga events for each error', () => {
-		let html = compiled.render({
-			'ga-id': 'abc',
-			'ga-page': '/path',
-			errorlist: [
-				{ key: 'KEY1', type: 'TYPE1', gaCategory: 'CAT1', gaAction: 'ACTION1', gaLabel: 'LABEL1', gaValue: 12 }
-			]
-		});
+        html.should.match(/hitType: 'event'[^]+eventCategory: 'form validation'[^]+eventAction: 'failed'[^]+eventLabel: "KEY1: TYPE1"/);
+        html.should.match(/hitType: 'event'[^]+eventCategory: 'form validation'[^]+eventAction: 'failed'[^]+eventLabel: "KEY2: TYPE2"/);
+    });
 
-		html.should.match(/eventCategory: "CAT1"/);
-		html.should.match(/eventAction: "ACTION1"/);
-		html.should.match(/eventLabel: "LABEL1"/);
-		html.should.match(/eventValue: "12"/);
-	});
+    it('should fire ga events for each event', () => {
+        locals.gaevents = [
+            { gaCategory: 'CAT1', gaAction: 'ACTION1' },
+            { gaCategory: 'CAT2', gaAction: 'ACTION2', gaLabel: 'LABEL2', gaValue: 23 }
+        ];
+        let html = partials.render('hmpo-partials-analytics', locals);
 
-	it('should fire ga events for each event', () => {
-		let html = compiled.render({
-			'ga-id': 'abc',
-			'ga-page': '/path',
-			gaevents: [
-				{ gaCategory: 'CAT1', gaAction: 'ACTION1' },
-				{ gaCategory: 'CAT2', gaAction: 'ACTION2', gaLabel: 'LABEL2', gaValue: 23 }
-			]
-		});
-
-		html.should.match(/eventCategory: "CAT1"/);
-		html.should.match(/eventAction: "ACTION1"/);
-		html.should.match(/eventCategory: "CAT2"/);
-		html.should.match(/eventAction: "ACTION2"/);
-		html.should.match(/eventLabel: "LABEL2"/);
-		html.should.match(/eventValue: "23"/);
-	});
+        html.should.match(/hitType: 'event'[^]+eventCategory: "CAT1"[^]+eventAction: "ACTION1"/);
+        html.should.match(/hitType: 'event'[^]+eventCategory: "CAT2"[^]+eventAction: "ACTION2"[^]+eventLabel: "LABEL2"[^]+eventValue: "23"/);
+    });
 
 });

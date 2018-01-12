@@ -9,32 +9,28 @@
     {{$ga-page-view}}
     ga('send', 'pageview'{{#ga-page}}, "{{ga-page}}{{ga-tokens}}"{{/ga-page}});
     {{/ga-page-view}}
-    {{#ga-page}}
     {{#errorlist.length}}
         {{#errorlist}}
             ga('send', {
-                hitType: 'event'
-                {{#gaCategory}}, eventCategory: "{{gaCategory}}"{{/gaCategory}}
-                {{^gaCategory}}, eventCategory: 'form validation'{{/gaCategory}}
-                {{#gaAction}}, eventAction: "{{gaAction}}"{{/gaAction}}
-                {{^gaAction}}, eventAction: 'failed'{{/gaAction}}
-                {{#gaLabel}}, eventLabel: "{{gaLabel}}"{{/gaLabel}}
-                {{^gaLabel}}, eventLabel: "{{key}}: {{type}}"{{/gaLabel}}
-                {{#gaValue}}, eventValue: "{{gaValue}}"{{/gaValue}}                
+                hitType: 'event',
+                eventCategory: 'form validation',
+                eventAction: 'failed',
+                eventLabel: "{{key}}: {{type}}"
             });
         {{/errorlist}}
     {{/errorlist.length}}
     {{#gaevents.length}}
         {{#gaevents}}
             ga('send', {
-                hitType: 'event'
-                , eventCategory: "{{gaCategory}}"
-                , eventAction: "{{gaAction}}"
+                hitType: 'event',
+                eventCategory: "{{gaCategory}}",
+                eventAction: "{{gaAction}}"
                 {{#gaLabel}}, eventLabel: "{{gaLabel}}"{{/gaLabel}}
                 {{#gaValue}}, eventValue: "{{gaValue}}"{{/gaValue}}
             });
         {{/gaevents}}
     {{/gaevents.length}}
-    {{/ga-page}}
+
+    {{$analytics}}{{/analytics}}
 </script>
 {{/ga-id}}

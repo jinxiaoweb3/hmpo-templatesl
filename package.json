@@ -4,7 +4,7 @@
   "description": "Page layouts and partials for Node.js with ExpressJS frontend applications",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test --recursive"
+    "test": "eslint . && mocha ./test --recursive"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "cheerio": "^1.0.0-rc.2",
+    "eslint": "^4.15.0",
     "hogan.js": "^3.0.2",
     "mocha": "^4.0.1"
   }

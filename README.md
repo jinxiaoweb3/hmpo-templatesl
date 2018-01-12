@@ -90,3 +90,22 @@ This changes the main page layout to maincontent-right. In your custom pages you
 ## Compatibility
 
 Use with [hmpo-template-mixins](https://github.com/UKHomeOffice/passports-template-mixins) for form inputs and view formatters. When used with [hmpo-form-wizard](https://github.com/UKHomeOffice/passports-form-wizard) you'll get a validation summary appearing at the top of your page when a form error occurs.
+
+## Google Analytics Classic
+
+To enable Google Analytics tracking expose a GA ID as `res.locals['ga-id']`.
+
+Page views and form validation error events will be sent to GA.
+
+Events contained in the array `res.locals.gaevents` will be fired on page view, for instance:
+```
+res.locals.gaevents = [
+    {
+        gaCategory: 'Category',
+        gaAction: 'Action',
+        gaLabel: 'Label',
+        gaValue: 42
+    }
+];
+```
+
