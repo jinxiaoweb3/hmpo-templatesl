@@ -58,6 +58,8 @@ Layout:
 
 Partials:
 + analytics
++ gtm
++ gtm-noscript
 + back-link
 + back
 + betatag
@@ -109,3 +111,32 @@ res.locals.gaevents = [
 ];
 ```
 
+
+## Google Tag Manager
+
+To enable Google Tag Manager expose GTM settings as:
+```
+res.locals.gtm = {
+    id: 'GT-XXXXXX',
+    preview: 'env-1',
+    auth: 'abcdefg'
+};
+```
+For production environments only an ID is required.
+
+Page views and form validation error events will be sent to GTM.
+
+Events contained in the array `res.locals.gaevents` will be fired on page view, for instance:
+```
+res.locals.gaevents = [
+    {
+        gaEvent: 'My Event', // defaults to 'Custom Event'
+        gaCategory: 'Category',
+        gaAction: 'Action',
+        gaLabel: 'Label',
+        gaValue: 42
+    }
+];
+```
+
+_Note: Enabling Google Tag Manager will disable Google Analytics Classic_
