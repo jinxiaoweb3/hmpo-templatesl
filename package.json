@@ -17,13 +17,13 @@
   },
   "homepage": "https://github.com/UKHomeOffice/passports-templates#readme",
   "dependencies": {
-    "express": "^4.13.4",
+    "express": "^4.16.4",
     "express-partial-templates": "^0.2.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "eslint": "^4.15.0",
+    "chai": "^4.2.0",
+    "eslint": "^5.12.0",
     "hogan.js": "^3.0.2",
-    "mocha": "^4.0.1"
+    "mocha": "^5.2.0"
   }
 }
